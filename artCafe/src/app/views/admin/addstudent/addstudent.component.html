@@ -1,0 +1,77 @@
+<div class="container">
+  <form #f="ngForm" (ngSubmit)="add(f)" enctype="multipart/form-data">
+    <!-- FirstName validation start here -->
+    <div class="form-group">
+      <label for="firstname">Firstname</label>
+      <input type="text" class="form-control" placeholder="First Name" required name="firstname" #firstname="ngModel" ngModel minlength="2" maxlength="20">
+    </div>
+    <div class="alert alert-danger" *ngIf="firstname.errors && firstname.touched">
+      First Name is required.
+    </div>
+    <div class="alert alert-danger" *ngIf="firstname.errors && firstname.touched">
+      First Name must be at least 2 characters long.
+    </div>
+    
+    <!-- LastName validation start here -->
+    <div class="form-group">
+      <label for="lastname">Lastname</label>
+      <input type="text" class="form-control" placeholder="Last Name" required name="lastname" #lastname="ngModel" ngModel minlength="2" maxlength="20">
+    </div>
+    <div class="alert alert-danger" *ngIf="lastname.errors && lastname.touched">
+      Last Name is required.
+    </div>
+    <div class="alert alert-danger" *ngIf="lastname.errors && lastname.touched">
+      Last Name must be at least 2 characters long.
+    </div>
+
+    <!-- Email validation start here -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" placeholder="Email" required name="email" #email="ngModel" ngModel email>
+    </div>
+    <div class="alert alert-danger" *ngIf="email.errors && email.touched">
+      Email is required.
+    </div>
+    <div class="alert alert-danger" *ngIf="email.errors && email.touched">
+      Please enter a valid email address.
+    </div>
+
+    <!-- Age validation start here -->
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" placeholder="Age" required name="age" #age="ngModel" ngModel min="18" max="100">
+    </div>
+    <div class="alert alert-danger" *ngIf="age.errors && age.touched">
+      Age is required.
+    </div>
+    <div class="alert alert-danger" *ngIf="age.errors && age.touched">
+      Age must be at least 18.
+    </div>
+    <div class="alert alert-danger" *ngIf="age.errors && age.touched">
+      Age must be less than 100.
+    </div>
+
+    <!-- Phone validation start here -->
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="number" class="form-control" placeholder="Phone" required name="phone" #phone="ngModel" ngModel>
+    </div>
+    <div class="alert alert-danger" *ngIf="phone.errors && phone.touched">
+      Phone number is required.
+    </div>
+
+    <!-- Video Upload -->
+    <div class="upload-container">
+      <h2>Upload a photo</h2>
+      <input type="file" id="file" (change)="onFileSelected($event)">
+    </div>
+
+    <!-- Display error message for video upload if required -->
+    <div class="alert alert-danger" *ngIf="messageErr">
+      {{ messageErr }}
+    </div>
+
+    <!-- Submit button -->
+    <button class="btn btn-primary" [disabled]="f.invalid">Add Student</button>
+  </form>
+</div>

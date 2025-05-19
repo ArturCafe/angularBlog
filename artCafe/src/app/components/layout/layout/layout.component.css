@@ -1,0 +1,37 @@
+main {
+    min-height: 170vh;
+  }
+  .like-button {
+    cursor: pointer;
+  }
+  /* Stiluri personalizate pentru Navbar */
+.navbar {
+    padding: 0.5rem;
+  }
+  .navbar-nav {
+    display: flex;
+    justify-content: flex-end; /* Aliniază tot la dreapta */
+  }
+  .navbar-nav {
+    justify-content: flex-end; /* Asigură-te că elementele sunt aliniate la dreapta */
+  }
+  .custom-bg {
+      background-color: #dbdada; /* Un gri închis */
+    }
+  .navbar-toggler {
+    border: none;
+  }
+  
+  .nav-item {
+    margin-right: 15px; /* Un mic spacing pentru elementele din navbar */
+  }
+  /* Stil pentru sidebar pe mobil */
+.sidebar-mobile {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 260px;
+  height: calc(100vh - 64px);
+  background-color: #f8f9fa;
+  z-index: 1050;
+}

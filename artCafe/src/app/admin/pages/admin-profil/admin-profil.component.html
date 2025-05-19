@@ -1,0 +1,88 @@
+<div class="container-fluid m-3 p-3">
+    <div class="row">
+      <div class="col-md-3">
+        <app-admin-sideboard></app-admin-sideboard>
+      </div>
+  
+      <div class="col-md-9">
+        <h1>Update Profile</h1>
+  
+        <form [formGroup]="profileForm" (ngSubmit)="handleUpdate()" class="m-1 w-75">
+          <!-- Alert Messages -->
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+          <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  
+          <!-- Spinner -->
+          <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+  
+          <!-- Avatar Upload -->
+          <div class="mb-4 text-center">
+            <!-- Avatar Preview -->
+            <img
+              *ngIf="avatarPreviewUrl; else noAvatar"
+              [src]="avatarPreviewUrl"
+              class="rounded-circle mb-2"
+              style="width: 150px; height: 150px; object-fit: cover;"
+              (error)="avatarPreviewUrl = null"
+            />
+  
+            <!-- Fallback Text -->
+            <ng-template #noAvatar>
+              <div class="text-muted">No avatar uploaded</div>
+            </ng-template>
+  
+            <!-- File Input Button -->
+            <label *ngIf="!isFileUploaded" class="btn btn-outline-secondary btn-sm mt-2" for="avatarInput">
+              Upload Avatar        
+                </label>
+              <input id="avatarInput" type="file" accept="image/*" (change)="onFileChange($event)" hidden />
+             
+
+            <label *ngIf="isFileUploadShcange"  class="btn btn-outline-secondary btn-sm mt-2" for="avatarInput">
+                Upload Avatar schange
+                <input
+                type="file"
+                accept="image/*"
+                (change)="onFileChange($event)"
+                hidden
+              />
+            </label>
+                
+          </div>
+  
+          <!-- Name -->
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name" />
+          </div>
+  
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" />
+          </div>
+  
+          <!-- Phone -->
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" formControlName="phone" />
+          </div>
+  
+          <!-- Address -->
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" formControlName="address" />
+          </div>
+  
+          <!-- Submit -->
+          <button class="btn btn-primary" type="submit" [disabled]="profileForm.invalid || isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+            Update Profile
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

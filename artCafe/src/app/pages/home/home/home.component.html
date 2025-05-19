@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Button to toggle sidebar on small screens -->
+    <div class="d-md-none p-2">
+   
+    </div>
+
+    <!-- Sidebar -->
+
+    <div  *ngIf="isSideBarToogleVisible" class="container">
+
+      <app-sideboard
+      [categories]="categories"
+      (categorySelected)="onCategorySelected($event)"
+    ></app-sideboard>
+    
+    </div>
+
+    <div
+      class="col-md-3 col-sm-12 sideboard    content-area"
+      [ngClass]="{
+        'd-none': !isSidebarVisible && isSmallScreen,
+        'hidden': isSidebarHidden
+      }"
+      style="top: 80px; height: calc(100vh - 100px); position: sticky;"
+    >
+      <app-sideboard
+        [categories]="categories"
+        (categorySelected)="onCategorySelected($event)"
+      ></app-sideboard>
+    </div>
+
+    <div *ngIf="isSideBarToogleVisible"  class="container">
+
+      <app-content-card  style="top: 80px; height: calc(100vh - 100px); position: sticky;"
+      [posts]="posts"
+      [apiUrl]="apiUrl"
+      (like)="addLike($event)">
+    </app-content-card>
+    
+    </div>
+    
+    <div
+     class="col-md-9 col-sm-12 content"
+    [ngClass]="{ 'shift': !isSidebarVisible && isSmallScreen }"   style="padding-top: 80px;"
+>
+  
+      <div *ngIf="!isSideBarToogleVisible"  class="container">
+
+        <app-content-card  style="top: 580px; height: calc(100vh - 100px); position: sticky;"
+        [posts]="posts"
+        [apiUrl]="apiUrl"
+        (like)="addLike($event)">
+      </app-content-card>
+      
+      </div>
+ 
+    
+      
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center my-4">
+        <app-pagination
+          [current]="currentPage"
+          [totalPage]="totalPage"
+          (goTo)="onGoTo($event)"
+          (next)="onNext()"
+          (previous)="onPrevious()"
+        ></app-pagination>
+      </div>
+    </div>
+  </div>
+</div>

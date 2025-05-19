@@ -1,0 +1,105 @@
+<div class="container-fluid m-3 p-3">
+    <div class="row">
+      <div class="col-md-3">
+        <app-admin-sideboard></app-admin-sideboard>
+      </div>
+  
+      <div class="col-md-9">
+        <h1>Update Profile</h1>
+        <div class="m-1 w-75">
+          <!-- Error and Success Messages -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+          <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+  
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+  
+          <!-- Upload Avatar -->
+          <div class="mb-3">
+            <label class="btn btn-outline-secondary col-md-12">
+              Upload Avatar
+              <input
+                type="file"
+                accept="image/*"
+                (change)="onFileChange($event)"
+                hidden
+              />
+            </label>
+          </div>
+  
+          <!-- Avatar Preview -->
+          <div class="mb-3 text-center">
+            <ng-container *ngIf="getAvatarUrl(); else noAvatar">
+              <img
+                [src]="getAvatarUrl()"
+                alt="Avatar Preview"
+                height="200px"
+                class="img img-responsive"
+              />
+            </ng-container>
+            <ng-template #noAvatar>
+              <p>No avatar uploaded</p>
+            </ng-template>
+          </div>
+  
+          <!-- Name -->
+          <div class="mb-3">
+            <h4>Name</h4>
+            <input
+              type="text"
+              [(ngModel)]="name"
+              placeholder="Enter name"
+              class="form-control"
+            />
+          </div>
+  
+          <!-- Email -->
+          <div class="mb-3">
+            <h4>Email</h4>
+            <input
+              type="text"
+              [(ngModel)]="email"
+              class="form-control"
+              placeholder="Enter your email"
+            />
+          </div>
+  
+          <!-- Phone -->
+          <div class="mb-3">
+            <h4>Phone</h4>
+            <input
+              type="text"
+              [(ngModel)]="phone"
+              class="form-control"
+              placeholder="Enter your phone"
+            />
+          </div>
+  
+          <!-- Address -->
+          <div class="mb-3">
+            <h4>Address</h4>
+            <input
+              type="text"
+              [(ngModel)]="address"
+              class="form-control"
+              placeholder="Enter your address"
+            />
+          </div>
+  
+          <!-- Update Button -->
+          <div class="mb-3">
+            <button class="btn btn-primary" (click)="handleUpdate()" [disabled]="isLoading">
+              UPDATE Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

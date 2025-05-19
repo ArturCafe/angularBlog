@@ -1,0 +1,27 @@
+<div class="text-center">
+    <div class="list-group dashboard-menu"   style="padding-top: 120px;  height: 100vh;">
+   
+     
+      <h4>Select option for admin</h4>
+
+      <button (click)="handleSelectAll()" class="list-group-item list-group-item-action">
+        Select All
+        <input
+          type="checkbox"
+          class="form-check-input ms-2"
+          [checked]="allSelect.length === posts.length && posts.length > 0"
+        />
+      </button>
+  
+      <button (click)="deleteFetch()" class="delete-btn">
+        Delete
+      </button>
+      <div class="list-group dashboard-menu"  
+       style="padding-top: 20px; ">
+      <div (click)="navigateToPost()" class="delete-btn">
+        Post update
+      </div>
+      </div>
+    </div>
+  </div>
+  

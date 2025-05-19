@@ -1,0 +1,56 @@
+
+
+<div class="container d-flex justify-content-between align-items-center">
+
+
+  <div  class="container d-flex flex-column align-items-center py-4" style="margin-left: 5px;">
+      <a *ngIf="user" href="#" class="mb-3">
+        <img
+        *ngIf="!user.avatar || !user.avatar[0]"
+        src="https://images.bolt.eu/store/2025/2025-03-24/38ab9059-7d47-415f-a10b-171b3695bacb.png"
+        alt="Default Avatar"
+        class="rounded-circle"
+        style="width: 95px;"
+      />
+  
+      <!-- User image if available -->
+      <img
+        *ngIf="user.avatar && user.avatar[0]"
+        [src]="apiUrl + user.avatar[0]"
+        alt="User Avatar"
+        class="img-fluid rounded shadow-sm rounded-circle"
+        style="width: 65px; cursor: pointer;"
+      />
+      </a>
+      
+      <button class="btn btn-link d-lg-none mb-3" onclick="w3_open()">
+        <i class="fa fa-bars fa-2x"></i>
+      </button>
+      
+      <div class="text-center">
+        <h1><b>Content </b></h1>
+      </div>
+  <div class="d-flex flex-column align-items-center mt-3">
+
+     
+    <div class="d-flex flex-column align-items-center mt-3">
+      <span class="mb-2">Category</span>
+      <div *ngIf="categories.length > 0">
+        <div *ngFor="let category of categories">
+          <div
+            class="custom-btn"
+            [ngClass]="{'active-category': selectedCategoryId === category._id}"
+            tabindex="0"
+            role="button"
+            (click)="onCategoryClick(category)"
+          >
+            <i class="fa fa-map-pin me-2"></i> {{ category.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    </div>
+    </div>
+

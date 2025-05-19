@@ -1,0 +1,199 @@
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <!-- No posts -->
+        <div *ngIf="posts.length === 0" class="text-center">
+          <img
+            src="https://img.republicworld.com/rimages/1kutzil5lj0nvfsf_1596544016_16_9.jpeg"
+            alt="No posts available"
+            class="img-fluid"
+          />
+          <p>No posts available</p>
+        </div>
+
+        <!-- Posts list -->
+        <div *ngFor="let post of posts" class="mb-5">
+          <!-- Image -->
+          <div *ngIf="post.photo.length > 0">
+            <a [routerLink]="['/post', post._id]">
+              <img
+                [src]="apiUrl + post.photo[0]"
+                alt="Post photos"
+                class="img-fluid rounded shadow-sm"
+                style="cursor: pointer;"
+              />
+            </a>
+          </div>
+
+          <!-- Video -->
+          <div *ngIf="post.video.length > 0">
+            <video
+              [src]="apiUrl + post.video[0]"
+              preload="auto"
+              width="100%"
+              height="auto"
+              controls
+            >
+              Your browser does not support the video.
+            </video>
+          </div>
+
+          <!-- Details -->
+          <div class="card-body mt-2">
+          
+
+                <div class="d-flex justify-content-between align-items-center" >
+          
+               <span class="me-3 like-button" [routerLink]="['/contact', post['postedBy']]"
+
+                >🔖 Titlu {{ post.name }}</span>
+
+               <span class="me-3 like-button" (click)="toggleDescription(post)">
+                👁️ {{ post.isDescriptionVisible ? 'Ascunde' : 'Afișează' }} descriere
+               </span>
+
+                <span class="me-3 like-button"(click)="onLike(post)" >❤️ {{ post.likes.length }}</span>
+          
+                <span class="me-3 like-button" (click)="toggleForm(post)"
+                
+                >💬 {{ post.comments.length }}</span>
+
+              </div>
+
+            
+          
+              <div   class="card mb-3"  *ngIf="post.isDescriptionVisible" >
+
+              <div class="card-body">
+                <div class="d-flex flex-start">
+              {{post.description}}
+                     
+                </div>
+              </div>
+             </div>
+                    
+           
+          
+            </div>
+
+<!-- Comment Form (visible only if post.isFormVisible) -->
+<div *ngIf="post.isFormVisible"  class="card mb-3">
+  <div class="card-body">
+
+    
+<div class="modal-header">
+        
+    
+  <div class="card">
+
+        <div class="card-body p-2 d-flex align-items-center">
+          <h6 class="text-primary fw-bold small mb-0 me-1">Commenteaza</h6>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
+            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+
+  <ng-template #content let-c="close" let-d="dismiss"></ng-template>
+     <div class="modal-header">
+         <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+         <button type="button"
+      class="btn-close" aria-label="Close" ></button>
+     </div>
+
+     <div class="modal-body">
+
+        
+  <button
+  type="button"
+  [disabled]="!post.comments || post.comments.length === 0"
+  (click)="loadComments(post._id)"
+  class="btn"
+  [ngClass]="{
+    'btn-outline-primary': post.comments && post.comments.length > 0,
+    'btn-secondary': !post.comments || post.comments.length === 0
+  }"
+>
+  <h6 class="fw-bold small mb-0 me-1">
+    {{ post.comments && post.comments.length > 0 ? 'Get Comments' : 'Nu sunt comentarii' }}
+  </h6>
+</button>
+
+  
+       
+     <section style="background-color: #f7f6f6;">
+       <div class="container my-5 py-5 text-body">
+         <div class="row d-flex justify-content-center">
+           <div class="col-md-12 col-lg-10 col-xl-8">
+             <div class="d-flex justify-content-between align-items-center mb-4">
+             
+             
+             </div>
+     
+     
+<div *ngFor="let comment of comments">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex flex-start">
+       <div>
+        <img
+          [src]="comment.userComment?.avatar?.[0] ? apiUrl + comment.userComment.avatar[0] : 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(14).webp'"
+  alt="avatar"
+            alt="avatar"
+            width="40"
+            height="40"
+            class="rounded-circle shadow-1-strong mb-1"
+          />
+          <small class="d-block fw-bold text-primary">{{ comment.userComment.name }}</small>
+        </div>
+
+        <div class="w-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+           <span class="text-body">  Commentariu:  {{ comment.text }} </span>
+         
+          
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="small mb-0" style="color: #aaa;">
+              <a href="#!" class="link-grey">Remove</a> •
+              
+              <a href="#!" class="link-grey">Translate</a>
+            </p> 
+             <p class="mb-0 text-muted">{{ comment.createdAt | date:'short' }}</p>
+            <div class="d-flex flex-row">
+              <i class="far fa-check-circle text-primary"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 
+           </div>
+         </div>
+       </div>
+     </section>
+ 
+     </div>
+     <div class="modal-footer">
+         <button type="button" class="btn btn-outline-secondary">Save</button>
+     </div>
+
+  </div>
+</div>
+
+            <button class="btn btn-info" (click)="navigateToPost(post._id)">
+              More Details
+            </button>
+          </div>
+        </div>
+      </div>
+

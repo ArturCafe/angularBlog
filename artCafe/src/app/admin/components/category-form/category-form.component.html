@@ -1,0 +1,21 @@
+
+<form (submit)="onSubmit($event)">
+    <div class="mb-3">
+      <input
+      style="width: 300px;"
+        type="text"
+        class="form-control"
+        [(ngModel)]="value"
+        name="name"
+        placeholder="Enter category name"
+        required
+      />
+    </div>
+    <div class="text-end">
+      <button type="submit"
+      style="padding-right: 238px;"
+      class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  
+

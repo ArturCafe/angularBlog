@@ -1,0 +1,23 @@
+.delete-btn {
+    background-color: #546372; /* Culoare albastră */
+    color: white; /* Text alb */
+    padding: 10px 20px; /* Spațiu interior */
+    border: none; /* Fără bordură */
+    border-radius: 5px; /* Colțuri rotunjite */
+    font-size: 16px; /* Dimensiune font */
+    cursor: pointer; /* Arată că este clicabil */
+    transition: background-color 0.3s ease; /* Tranziție lină la hover */
+  }
+  
+  .delete-btn:hover {
+    background-color: #b3002d; /* Schimbă culoarea la hover (un albastru mai închis) */
+  }
+  
+  .delete-btn:active {
+    background-color: #008500; /* Culoare mai închisă la click */
+  }
+  
+  .delete-btn:focus {
+    outline: none; /* Elimină conturul la focus */
+  }
+  

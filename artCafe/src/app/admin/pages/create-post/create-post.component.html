@@ -1,0 +1,61 @@
+<div class="container-fluid p-3 dashboard">
+  <div class="row">
+    <div class="col-12 d-md-none text-end mb-2">
+      <button class="btn btn-outline-secondary" (click)="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+
+    <div style="margin-top: 50px"
+      class="col-md-3"
+      [ngClass]="{ 'd-none d-md-block': !isSidebarVisible && isMobile }">
+      <app-admin-sideboard></app-admin-sideboard>
+    </div>
+
+    <div class="col-12 col-md-9" [class.offset-md-3]="isMobile && isSidebarVisible">
+      <div class="card shadow p-4" style="margin-top: 50px;">
+        <h4 class="mb-3">Create Post</h4>
+
+        <select class="form-select mb-3" [(ngModel)]="category">
+          <option disabled selected value="">Click to select category</option>
+          <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+        </select>
+
+        <div class="mb-3">
+          <input
+            type="file"
+            class="form-control"
+            (change)="onFileChange($event)"
+            multiple
+            accept=".jpg, .png, .mp4"
+          />
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="name"
+            placeholder="Write a name"
+          />
+        </div>
+
+        <div class="mb-3">
+          <textarea
+            class="form-control"
+            rows="4"
+            [(ngModel)]="description"
+            placeholder="Write a description"
+          ></textarea>
+        </div>
+
+        <div class="text-end">
+          <button class="btn btn-primary" [disabled]="loading" (click)="createPost()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+            {{ loading ? 'Creating...' : 'CREATE POST' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

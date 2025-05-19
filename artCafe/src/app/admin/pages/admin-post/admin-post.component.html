@@ -1,0 +1,94 @@
+
+
+
+<div class="container-fluid p-3 dashboard">
+    <!-- Row principal -->
+    <div class="row">
+  
+      <!-- Sidebar toggle (pe mobil) -->
+      <div class="col-12 d-md-none text-end mb-2">
+        <button class="btn btn-outline-secondary" (click)="toggleSidebar()">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+  
+      <!-- Sidebar (ascuns pe mobil dacă isSidebarVisible = false) -->
+      <div style="margin-top: 50px"
+        class="col-md-3"
+        [ngClass]="{ 'd-none d-md-block': !isSidebarVisible && isMobile }"
+      >
+        <app-sideboard-post ></app-sideboard-post>
+      </div>
+  
+      <!-- Content principal -->
+      <div class="col-md-9"  style="margin-top: 150px" >
+        <h1 class="text-center">Admin Post</h1>
+        <div class="d-flex flex-wrap justify-content-center">
+          <div class="container pt-5">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <h3 class="mb-3">{{post?.name}} </h3>
+                <hr />
+                <p>
+                 foto
+                </p>
+                <div *ngIf="post?.photo?.length > 0; else showVideo">
+                  <img
+                    [src]="apiUrl + post.photo[0]"
+                    class="img-fluid rounded shadow-sm mb-4"
+                    alt="Post Image"
+                  />
+                </div>
+                
+          
+                <ng-template #showVideo>
+                  <div *ngIf="post?.video?.length > 0">
+                    <video
+                      [src]="apiUrl + post.video[0]"
+                      preload="auto"
+                      class="w-100 rounded shadow-sm mb-4"
+                      controls
+                      >
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </ng-template>
+          
+                <p class="lead"> {{post?.email | json}}gg </p>
+                <div class="card-body mt-2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="me-3 like-button">🔖 Titlu  post.name </span>
+                
+               
+                    <span class="me-3 like-button"  >
+                     
+                    </span>
+                  </div>
+                
+                 
+                 
+                 
+                </div>
+              
+          <div>
+          
+          
+
+          
+          
+          </div>
+             
+          
+              </div>
+            </div>
+          </div>
+          
+           
+          
+        </div>
+      </div>
+  
+
+    </div>
+  </div>
+

@@ -1,0 +1,75 @@
+
+<div>
+    <nav class="navbar navbar-expand-lg custom-bg fixed-top ">
+      <div class="container-fluid">
+        <button 
+          class="navbar-toggler" 
+          type="button"
+          (click)="toggleSidebar()" 
+
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a routerLink="/" class="navbar-brand">Home </a>
+  
+          <!-- Search input, dacă vrei să-l adaugi -->
+          <!-- <app-search-input></app-search-input> -->
+  
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!-- Dacă utilizatorul NU e autentificat -->
+            <ng-container *ngIf="!authServ.isAuthenticated()">
+              <li class="nav-item">
+                <a routerLink="/register" class="nav-link">Register</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/login" class="nav-link">Login</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="authServ.isAuthenticated()">
+
+              <li class="nav-item">
+                <a (click)="handleLogout()" class="dropdown-item like-button">Logout</a>
+              </li>
+        
+            </ng-container>
+          
+            <!-- Dacă utilizatorul este autentificat -->
+            <ng-container *ngIf="authServ.isAuthenticated()">
+
+              <li class="nav-item " ngbDropdown>
+                
+                <a
+                  class="nav-link dropdown-toggle"
+                  ngbDropdownToggle
+                 
+                  id="userDropdown"
+                  role="button"
+                  aria-expanded="false"
+                  style="border: none"
+                >
+                  {{user.name}}
+                </a>
+                <ul ngbDropdownMenu aria-labelledby="userDropdown" class="dropdown-menu">
+                  <li *ngIf="user.role === 1">
+                    <a routerLink="/admin/dashboard" class="dropdown-item">Dashboard</a>
+                  </li>
+                 
+                </ul>
+              </li>
+            </ng-container>
+          </ul>
+          
+        
+ 
+         
+        </div>
+      </div>
+    </nav>
+
+    
+
+  </div>
+  
+

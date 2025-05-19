@@ -1,0 +1,70 @@
+
+
+<div class="container-fluid p-3 dashboard">
+    <!-- Row principal -->
+    <div class="row">
+  
+      <!-- Sidebar toggle (pe mobil) -->
+      <div class="col-12 d-md-none text-end mb-2">
+        <button class="btn btn-outline-secondary" (click)="toggleSidebar()">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+  
+      <!-- Sidebar (ascuns pe mobil dacă isSidebarVisible = false) -->
+      <div style="margin-top: 50px"
+        class="col-md-3"
+        [ngClass]="{ 'd-none d-md-block': !isSidebarVisible && isMobile }"
+      >
+        <app-admin-sideboard  ></app-admin-sideboard>
+      </div>
+  
+      <!-- Content principal -->
+      <div class="col-md-9"  style="margin-top: 150px" >
+        <h1 class="text-center">Select a Category to Manage Posts</h1>
+        <div class="d-flex flex-wrap justify-content-center">
+          <ng-container *ngIf="categories.length > 0; else noCategories">
+            <div
+              *ngFor="let cat of categories"
+              class="product-link text-decoration-none"
+              (click)="goToCategoryPosts(cat._id)"
+              style="cursor: pointer;"
+            >  push
+              <div class="card m-2 p-3 rounded shadow-sm" style="width: 18rem;">
+                <ng-container *ngIf="cat.photo; else noImage">
+                  <img
+                    [src]="cat.photo"
+                    class="card-img-top rounded"
+                    [alt]="cat.name"
+                  />
+                </ng-container>
+                <ng-template #noImage>
+                  <div class="text-center p-3">
+                    <small class="text-muted">No image available</small>
+                  </div>
+                </ng-template>
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{ cat.name }}</h5>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noCategories>
+            <p class="text-center w-100 mt-4 text-muted">No categories available</p>
+          </ng-template>
+        </div>
+      </div>
+      <li
+      *ngFor="let page of paginationRange"
+      class="pagination-item"
+      [ngClass]="{ selected: page === currentPage }"
+      (click)="onPage(page)"
+    >
+      {{ page }}
+    </li>
+    
+    
+
+    </div>
+  </div>
+

@@ -1,0 +1,158 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Buton pentru deschiderea sidebar-ului pe mobil -->
+    <div class="d-md-none p-2">
+      <button class="btn btn-link" (click)="toggleSidebar()">
+        <i class="fa fa-bars fa-2x"></i>
+      </button>
+    </div>
+
+    <!-- Sidebar - vizibil doar pe ecrane mari sau când e activ pe mobil -->
+    <div 
+      class="col-sm-3"
+      [ngClass]="{ 'd-none': !isSidebarVisible && isSmallScreen }"
+      style="position: fixed; top: 64px; left: 0; height: calc(100vh - 50px); overflow-y: auto; z-index: 100; background-color: #f4f4f4;"
+    >
+      <app-admin-sideboard></app-admin-sideboard>
+    </div>
+
+    <!-- Conținut principal -->
+    <div 
+      class="col-sm-9" 
+      [style.marginLeft.px]="!isSmallScreen || isSidebarVisible ? 260 : 0"
+      style="padding-top: 120px; overflow-y: scroll; height: 100vh;"
+    >
+
+
+      <div class="mb-4">
+        <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <div className="col-md-9">
+              
+
+
+                <h1>Manage Category</h1>
+
+                <div class="p-3 w-50">
+                  <app-category-form
+                    [value]="name"
+                    (valueChange)="name = $event"
+                    (submitForm)="handleSubmit()"
+                  ></app-category-form>
+                </div>
+          
+                <div class="w-75">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let c of categories">
+                        <td>{{ c.name }}</td>
+                        <td>
+                          <button class="btn btn-primary ms-2" (click)="openEdit(c)">
+                            Edit
+                          </button>
+                          <button class="btn btn-danger ms-2" (click)="handleDelete(c._id)">
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+          
+                <ng-template [ngIf]="visible">
+                  <div class="modal show d-block" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content p-3">
+                        <button class="btn-close" (click)="closeModal()"></button>
+                        <app-category-form
+                          [value]="updatedName"
+                          (valueChange)="updatedName = $event"
+                          (submitForm)="handleUpdate()"
+                        ></app-category-form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-backdrop fade show"></div>
+                </ng-template>
+              </div>
+            </div>
+
+
+
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<!--
+
+<div class="container-fluid m-3 p-3 dashboard">
+  <div class="row">
+    <div class="col-md-3">
+      <app-admin-menu></app-admin-menu>
+    </div>
+    <div class="col-md-9">
+      <h1>Manage Category</h1>
+
+      <div class="p-3 w-50">
+        <app-category-form
+          [value]="name"
+          (valueChange)="name = $event"
+          (submitForm)="handleSubmit()"
+        ></app-category-form>
+      </div>
+
+      <div class="w-75">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of categories">
+              <td>{{ c.name }}</td>
+              <td>
+                <button class="btn btn-primary ms-2" (click)="openEdit(c)">
+                  Edit
+                </button>
+                <button class="btn btn-danger ms-2" (click)="handleDelete(c._id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ng-template [ngIf]="visible">
+        <div class="modal show d-block" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content p-3">
+              <button class="btn-close" (click)="closeModal()"></button>
+              <app-category-form
+                [value]="updatedName"
+                (valueChange)="updatedName = $event"
+                (submitForm)="handleUpdate()"
+              ></app-category-form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-backdrop fade show"></div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+
+-->

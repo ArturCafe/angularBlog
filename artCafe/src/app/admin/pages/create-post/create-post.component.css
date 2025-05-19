@@ -1,0 +1,28 @@
+.dashboard {
+    padding-top: 100px; /* împinge totul în jos */
+  }
+  
+  /* Sidebar-ul */
+  .sidebar-container {
+    margin-top: 50px;
+  }
+  
+  /* Conținutul principal */
+  .content-container {
+    margin-top: 50px;
+  }
+  
+  @media (max-width: 767px) {
+    .dashboard {
+      padding-top: 60px;
+    }
+  
+    .sidebar-container {
+      margin-top: 20px;
+    }
+  
+    .content-container {
+      margin-top: 20px;
+    }
+  }
+  

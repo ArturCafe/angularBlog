@@ -1,0 +1,76 @@
+<div class="row dashboard">
+  <div class="col-md-3">
+    <app-sideboard-posts-admin
+    [posts]="posts"
+    [select]="select"
+    (selectChange)="select = $event"
+    (sendDataToParent)="handleReceivedData($event)">
+>
+    </app-sideboard-posts-admin>
+  </div>
+
+  <div class="col-md-9">
+    <h1 class="text-center">Select a Post to Update</h1>
+
+    <div class="d-flex flex-wrap justify-content-center">
+      <ng-container *ngIf="posts.length > 0; else noPosts">
+        <div
+          *ngFor="let post of posts"
+          class="card m-2 shadow-sm"
+          style="width: 18rem;">
+          <div class="p-2">
+            <input
+              type="checkbox"
+              [checked]="select.includes(post._id)"
+              (change)="handleSelect($event, post._id)"
+            />
+            {{ post.name }}
+          </div>
+       
+          <a
+            [routerLink]="['/admin/post', post._id]"
+            class="product-link text-decoration-none">
+            <ng-container *ngIf="post.photo.length > 0; else videoBlock">
+              <img
+                [src]="apiUrl + post.photo[0]"
+                alt="Post photo"
+                class="img-fluid rounded shadow-sm"
+                style="cursor: pointer;" />
+            </ng-container>
+
+            <ng-template #videoBlock>
+              <video
+                preload="auto"
+                width="100%"
+                height="240"
+                controls
+                class="rounded">
+                <source [src]="apiUrl + post.video" />
+                Your browser does not support the video tag.
+              </video>
+            </ng-template>
+
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ post.name }}</h5>
+              <p class="card-text text-muted">{{ post.description }}</p>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+
+      <ng-template #noPosts>
+        <p class="text-center w-100 mt-4 text-muted">
+          No posts available in this category.
+        </p>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="d-flex flex-wrap">Pagina: {{ currentPage }}</div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+ 
+</div>

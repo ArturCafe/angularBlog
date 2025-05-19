@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="w-100" style="max-width: 500px;">
+
+    <h1 class="display-4  text-center"><strong>Registrare</strong></h1>
+
+    <form #contactForm="ngForm" (ngSubmit)="register(contactForm)" >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email vostru  </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          ngModel
+          aria-describedby="emailHelp"
+          required
+        />
+        <div id="emailHelp" class="form-text">Nu dezvalui emailu pentru toti</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Parola</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          ngModel
+          required
+        />
+      </div>
+      
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirmă parola</label>
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          name="confirmPassword"
+          ngModel
+          required
+        />
+      </div>
+      
+      <div *ngIf="contactForm.submitted && contactForm.value.password !== contactForm.value.confirmPassword" class="text-danger small">
+        Parolele nu coincid.
+      </div>
+      
+    
+
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Submit</button>
+      </div>
+      
+    </form>
+  </div>
+</div>
+

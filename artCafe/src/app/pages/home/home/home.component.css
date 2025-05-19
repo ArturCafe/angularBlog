@@ -1,0 +1,57 @@
+/* Sidebar stilizat */
+.sideboard {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 64px);
+  background-color: #f4f4f4;
+  z-index: 100;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Sidebar ascuns (când este toggle) */
+.sideboard.hidden {
+  transform: translateX(-100%);
+}
+
+/* Când sidebar-ul este ascuns, extindem content-ul */
+.main-content {
+  transition: all 0.3s ease;
+  padding-top: 80px; /* Ajustează pentru marginea de sus */
+  padding-left: 0;
+}
+
+.main-content.shift {
+  margin-left: 0;
+  width: 100%; /* Content-ul să ocupe întreaga lățime */
+}
+/* Stil pentru sidebar pe mobil */
+
+/* Responsivitate pe mobil */
+@media (max-width: 767px) {
+  .sideboard {
+    display: none; /* Sidebar-ul nu apare pe mobil */
+  }
+
+.sidebar-mobile {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 260px;
+  height: calc(100vh - 64px);
+  background-color: #f8f9fa;
+  z-index: 1050;
+}
+
+
+  .content {
+    padding-top: 4px;  /* Asigură-te că este aceeași înălțime ca și navbar-ul */
+    padding-left: 15px; /* Margină mică pe mobil */
+    padding-right: 15px; /* Margină mică pe mobil */
+  /*   background-color: yellow; Testăm să vedem dacă media query-ul se aplică */
+  }
+}
+
+

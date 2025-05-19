@@ -1,0 +1,77 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Buton pentru deschiderea sidebar-ului pe dispozitive mici -->
+    <button class="btn btn-link d-lg-none"
+     style=" padding-top: 20px; overflow-y: scroll; height: 100vh;"(click)="toggleSidebar()">
+      <i class="fa fa-bars fa-2x">ghuj</i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="col-sm-3 d-none d-md-block"
+     [ngClass]="{'d-none': isSidebarVisible}"
+      style="position: fixed; top: 50px; left: 0;
+       height: calc(100vh - 50px); 
+       overflow-y: auto; z-index: 100;
+        background-color: #f4f4f4;">
+      <app-sideboard></app-sideboard>
+    </div>
+
+    <!-- Conținutul principal -->
+    <div class="col-sm-9" style="margin-left: 260px; padding-top: 20px; overflow-y: scroll; height: 100vh;">
+    
+      <div class="mb-4">
+    
+        <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+    
+    
+              <div *ngIf="posts.length === 0" class="text-center">
+                <img 
+                src="https://img.republicworld.com/rimages/1kutzil5lj0nvfsf_1596544016_16_9.jpeg"
+                 alt="No posts available" class="img-fluid" />
+              
+                <p>No posts available</p>
+              </div>
+    
+    
+              <div *ngFor="let post of posts; let i = index" class="container pt-5">
+                
+                <div *ngIf="post.photo">
+                  
+                  <img [src]="BACKEND_URI + post.photo" class="card-img-top" alt="post" />
+                </div>
+                <div *ngIf="post.video">
+                  video
+                  <video #videoPlayer preload="auto" width="538" height="400" controls>
+                    <source [src]="BACKEND_URI + post.video" />
+                    Your browser does not  the photo.
+                  </video>
+                </div>
+    
+                <div class="card-body">
+                  <div class="card-name-price">
+                    <h5 class="card-title">{{ post.name }}</h5>
+                    <h5 class="card-title card-price">
+                      Likes: {{ post.likes.length }}
+                    </h5>
+                    <h6 class="card-title card-price">
+                      Comments: {{ post.comments.length }}
+                    </h6>
+                  </div>
+                  <p class="card-text">{{ post.description }}...</p>
+                  <div class="card-name-price">
+                    <button class="btn btn-info ms-1" (click)="navigateToPost(post._id)">
+                      More Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+  </div>
+</div>

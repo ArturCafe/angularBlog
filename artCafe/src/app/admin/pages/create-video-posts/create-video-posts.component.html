@@ -1,0 +1,75 @@
+
+<div class="container-fluid p-3 dashboard">
+  <!-- Row principal -->
+  <div class="row">
+
+    <!-- Sidebar toggle (pe mobil) -->
+    <div class="col-12 d-md-none text-end mb-2">
+      <button class="btn btn-outline-secondary" (click)="toggleSidebar()">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Sidebar (ascuns pe mobil dacă isSidebarVisible = false) -->
+    <div style="margin-top: 50px"
+      class="col-md-3"
+      [ngClass]="{ 'd-none d-md-block': !isSidebarVisible && isMobile }"
+    >
+      <app-admin-sideboard></app-admin-sideboard>
+    </div>
+
+    <!-- Content principal -->
+    <div
+      class="col-12 col-md-9"
+      [class.offset-md-3]="isMobile && isSidebarVisible"
+    >
+      <div class="card shadow p-4" style="margin-top: 150px;">
+        <h4 class="mb-3">Create VideoPost</h4>
+
+        <!-- Select categorie -->
+        <select class="form-select mb-3" [(ngModel)]="category">
+          <option disabled selected>Click to select category</option>
+          <option *ngFor="let cat of categories" [value]="cat._id">{{ cat.name }}</option>
+        </select>
+
+        <!-- Upload video -->
+        <div class="mb-3">
+          <input
+            type="file"
+            class="form-control"
+            (change)="onFileChange($event)"
+            multiple
+            accept=".mp4, .mkv, .webm"
+          />
+        </div>
+
+        <!-- Nume post -->
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="name"
+            placeholder="Write a name"
+          />
+        </div>
+
+        <!-- Descriere post -->
+        <div class="mb-3">
+          <textarea
+            class="form-control"
+            [(ngModel)]="description"
+            placeholder="Write a description"
+          ></textarea>
+        </div>
+
+        <!-- Buton creare -->
+        <div class="text-end">
+          <button class="btn btn-primary" (click)="createPost()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+            {{ loading ? 'Creating...' : 'CREATE POST' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

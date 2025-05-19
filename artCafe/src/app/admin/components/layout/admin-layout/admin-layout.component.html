@@ -1,0 +1,43 @@
+
+<div>
+  <nav class="navbar navbar-expand-lg custom-bg fixed-top ">
+    <div class="container-fluid">
+      <button 
+        class="navbar-toggler" 
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a routerLink="/admin/dashboard" class="navbar-brand">Admin</a>
+
+        <!-- Search input, dacă vrei să-l adaugi -->
+        <!-- <app-search-input></app-search-input> -->
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <!-- Dacă utilizatorul NU e autentificat -->
+          <ng-container *ngIf="authService.isAuthenticated">
+            <li>
+              <a (click)="handleLogout()" class="dropdown-item 
+              like-button ">Logout</a>
+            </li>
+          </ng-container>
+        
+         
+        </ul>
+        
+      
+
+       
+      </div>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

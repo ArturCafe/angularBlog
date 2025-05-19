@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="w-100" style="max-width: 500px;">
+
+    <h1 class="display-4  text-center"><strong>Loginizare</strong></h1>
+
+    <form #contactForm="ngForm" (ngSubmit)="login(contactForm)" >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          ngModel
+          aria-describedby="emailHelp"
+          required
+        />
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          ngModel
+          required
+        />
+      </div>
+
+      <div class="mb-3 form-check">
+     
+      </div>
+
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Submit</button>
+      </div>
+      
+    </form>
+  </div>
+</div>

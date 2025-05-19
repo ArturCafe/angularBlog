@@ -1,0 +1,45 @@
+<nav aria-label="Pagination">
+  
+
+  <div class="pagination-container list-unstyled d-flex justify-content-center flex-wrap">
+  <ul >
+    <li class="page-item">
+      <button
+        class="page-link"
+        [disabled]="current === 1"
+        (click)="onPrevious()"
+        aria-label="Previous"
+      >
+        Previous
+      </button>
+    </li>
+
+    <li 
+      class="page-item" 
+      *ngFor="let page of pages"
+      [class.active]="page === current"
+    >
+      <ng-container *ngIf="page !== -1; else ellipsis">
+     
+        <button class="page-link" (click)="onGoTo(page)">
+          {{ page }}
+        </button>
+      </ng-container>
+      <ng-template #ellipsis>
+        <span class="page-link">…</span>
+      </ng-template>
+    </li>
+
+    <li class="page-item">
+      <button
+        class="page-link"
+        [disabled]="current === totalPage"
+        (click)="onNext()"
+        aria-label="Next"
+      >
+        Next
+      </button>
+    </li>
+  </ul>
+  </div>
+</nav>

@@ -1,0 +1,56 @@
+/* Sidebar styles */
+.sidebar {
+  width: 260px;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  background-color: #f8f9fa;
+  z-index: 100;
+}
+
+/* Main content block */
+.contact {
+  padding-top: 63px;
+  padding-left: 8%;
+  padding-right: 8%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Contact block inside the main content */
+.contactus {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* ✅ Responsive: Mobile adjustments */
+@media (max-width: 767px) {
+  .sidebar {
+    display: none; /* Sidebar hidden entirely on mobile by default */
+  }
+
+  .contact {
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0 !important; /* Cancel margin-left applied via Angular */
+  }
+
+  .col-md-8 {
+    width: 100%; /* Use full width on mobile */
+  }
+}
